@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  @apply bg-white font-sans text-slate-600 antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #ffd60a;
+  color: #0b0d12;
+}
+
+/* thin scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f5b800;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+  .section {
+    @apply relative py-20 sm:py-28;
+  }
+  .font-display-tight {
+    @apply font-display tracking-tight;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-amber-700;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-8 bg-amber-600;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500;
+  }
+  .btn-primary {
+    @apply btn bg-brand text-ink-900 shadow-glow hover:-translate-y-0.5 hover:bg-brand-300;
+  }
+  .btn-ghost {
+    @apply btn border border-slate-300 bg-white text-slate-800 shadow-sm hover:border-amber-500 hover:bg-amber-50;
+  }
+  .btn-ghost-dark {
+    @apply btn border border-white/20 bg-white/5 text-white backdrop-blur hover:border-brand/60 hover:bg-white/10;
+  }
+  .card {
+    @apply rounded-2xl border border-slate-200 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_-12px_rgba(15,23,42,0.08)];
+  }
+  .glass {
+    @apply border border-slate-200/80 bg-white/80 backdrop-blur-xl;
+  }
+  /* admin panel buttons */
+  .abtn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-3.5 py-2 text-sm font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .abtn-primary {
+    @apply abtn bg-brand text-ink-900 shadow-sm hover:bg-brand-300;
+  }
+  .abtn-ghost {
+    @apply abtn border border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50;
+  }
+  .abtn-danger {
+    @apply abtn border border-red-200 bg-white text-red-600 hover:bg-red-50;
+  }
+  .abtn-icon {
+    @apply inline-grid h-8 w-8 place-items-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-900;
+  }
+  .input {
+    @apply w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 transition focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-brand/40;
+  }
+}
+
+/* sections that stay dark (footer, quote banner) */
+.on-dark .eyebrow {
+  color: #ffd60a;
+}
+.on-dark .eyebrow::before {
+  background: #ffd60a;
+}
+
+/* industrial hazard stripe, inspired by the catalogue's yellow/black deck plates */
+.hazard {
+  height: 10px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #ffd60a 0 14px,
+    #0b0d12 14px 28px
+  );
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(15, 23, 42, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, #0f172a 10%, #b45309 70%, #d97706);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

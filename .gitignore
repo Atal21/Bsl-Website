@@ -1,0 +1,17 @@
+node_modules
+.next
+out
+# Never commit secrets: every real env file and note files that may hold keys
+.env
+.env.*
+.env.example
+mm.txt
+*.whl
+*.zip
+.DS_Store
+next-env.d.ts
+*.tsbuildinfo
+data
+email-previews
+README.md
+mm.txt
